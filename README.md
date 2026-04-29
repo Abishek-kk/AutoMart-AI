@@ -1,4 +1,4 @@
-# 🛒 Supermarket AI System
+# AutoMart-AI
 
 > An end-to-end retail analytics platform combining ML models, intelligent agents, and an interactive dashboard to give supermarket managers actionable insights on customers, inventory, profit, and product recommendations.
 
