@@ -85,3 +85,8 @@ watchdog==6.0.0
 websockets==16.0
 xxhash==3.7.0
 zstandard==0.25.0
+streamlit
+plotly
+pandas
+numpy
+scikit-learn
