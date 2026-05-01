@@ -10,7 +10,7 @@
 
 ---
 
-## 📋 Table of Contents
+## Table of Contents
 
 - [Overview](#-overview)
 - [Architecture](#-architecture)
@@ -26,7 +26,7 @@
 
 ---
 
-## 🔍 Overview
+##  Overview
 
 Supermarket AI is built around three core pillars:
 https://automart-ai-mpworqt3pcf76dsgxam9bl.streamlit.app/
