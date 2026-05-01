@@ -33,9 +33,9 @@ https://automart-ai-mpworqt3pcf76dsgxam9bl.streamlit.app/
 
 | Pillar | Description |
 |--------|-------------|
-| 🤖 **ML Models** | Train on historical sales data to find patterns, customer segments, and sales forecasts |
-| 🧠 **Intelligent Agents** | Wrap models with business logic to produce human-readable, actionable insights |
-| 📊 **Interactive Dashboard** | A Streamlit web app that presents all outputs visually for non-technical managers |
+| **ML Models** | Train on historical sales data to find patterns, customer segments, and sales forecasts |
+| **Intelligent Agents** | Wrap models with business logic to produce human-readable, actionable insights |
+| **Interactive Dashboard** | A Streamlit web app that presents all outputs visually for non-technical managers |
 
 ### Tech Stack
 
@@ -49,7 +49,7 @@ https://automart-ai-mpworqt3pcf76dsgxam9bl.streamlit.app/
 
 ---
 
-## 🏗️ Architecture
+##  Architecture
 
 ```
 CSV Files
@@ -76,7 +76,7 @@ All Agent Outputs
 
 ---
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 supermarket-ai/
@@ -108,7 +108,7 @@ supermarket-ai/
 
 ---
 
-## 🤖 Models
+##  Models
 
 ### K-Means Customer Segmentation (`models/kmeans_model.py`)
 
@@ -157,7 +157,7 @@ Output: Predicted next-day quantity (single float)
 
 ---
 
-## 🧠 Agents
+##  Agents
 
 Each agent exposes a single `*_agent_summary()` master function used by both the dashboard and CLI. Models are pure ML; agents add the business interpretation on top.
 
@@ -184,7 +184,7 @@ Uses the Apriori model to surface product bundling and cross-sell opportunities.
 
 ---
 
-## 📊 Dashboard
+##  Dashboard
 
 Launch the interactive Streamlit dashboard:
 
@@ -207,7 +207,7 @@ streamlit run app/dashboard.py
 
 ---
 
-## ⚙️ Installation
+##  Installation
 
 **1. Clone the repository**
 ```bash
@@ -235,7 +235,7 @@ set GEMINI_API_KEY=your-api-key-here        # Windows
 
 ---
 
-## 🚀 Usage
+##  Usage
 
 ### Run the Dashboard (recommended)
 ```bash
@@ -262,7 +262,7 @@ The CLI runner executes every pipeline step in order and prints results to the t
 
 ---
 
-## 🔄 Data Flow
+##  Data Flow
 
 The preprocessing module is called **once** at startup — both `main.py` and `dashboard.py` pass the same enriched DataFrame to every downstream component, avoiding duplicate file reads.
 
@@ -279,7 +279,7 @@ The preprocessing module is called **once** at startup — both `main.py` and `d
 
 ---
 
-## 🔧 Configuration
+##  Configuration
 
 The system works out of the box without any configuration. The only optional setting is:
 
@@ -289,7 +289,7 @@ The system works out of the box without any configuration. The only optional set
 
 ---
 
-## 📦 Dependencies
+##  Dependencies
 
 | Package | Version | Purpose |
 |---------|---------|---------|
@@ -305,7 +305,7 @@ The system works out of the box without any configuration. The only optional set
 
 ---
 
-## 🎨 Key Design Decisions
+##  Key Design Decisions
 
 - **Single preprocessing call** — `preprocess_data()` runs once; the enriched DataFrame is passed to every component.
 - **Agent pattern** — Each agent exposes one `*_summary()` master function, keeping the dashboard and CLI interfaces clean.
