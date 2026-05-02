@@ -282,7 +282,7 @@ if page == "📊 Sales & Inventory":
             hovermode="x unified",
         )
         fig.update_traces(fill="tozeroy", fillcolor="rgba(92,107,192,0.15)", line_width=2)
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width='stretch')
     except Exception as e:
         show_error("Sales Trend", e)
 
@@ -306,14 +306,14 @@ if page == "📊 Sales & Inventory":
                 coloraxis_showscale=False,
                 yaxis=dict(categoryorder="total ascending"),
             )
-            st.plotly_chart(fig2, use_container_width=True)
+            st.plotly_chart(fig2, width='stretch')
 
             # Loss products
             loss = profit_data.get("loss_products")
             if loss is not None and not loss.empty:
                 st.markdown('<span class="badge-loss">⚠ Loss-Making Products Detected</span>', unsafe_allow_html=True)
                 st.dataframe(loss.reset_index().rename(columns={"Product_Name": "Product", "Profit": "Loss (₹)"}),
-                             use_container_width=True, hide_index=True)
+                             width='stretch', hide_index=True)
         except Exception as e:
             show_error("Profit Analysis", e)
 
@@ -329,7 +329,7 @@ if page == "📊 Sales & Inventory":
                 low_df = low_stock.reset_index()
                 low_df.columns = ["Product", "Current Stock"]
                 low_df["Restock Qty"] = low_df["Product"].map(restock).fillna(0).astype(int)
-                st.dataframe(low_df, use_container_width=True, hide_index=True)
+                st.dataframe(low_df, width='stretch', hide_index=True)
             else:
                 st.success("✅ All products adequately stocked")
 
@@ -347,7 +347,7 @@ if page == "📊 Sales & Inventory":
                 margin=dict(l=0, r=0, t=10, b=0),
                 coloraxis_showscale=False,
             )
-            st.plotly_chart(fig3, use_container_width=True)
+            st.plotly_chart(fig3, width='stretch')
         except Exception as e:
             show_error("Inventory", e)
 
@@ -396,7 +396,7 @@ elif page == "👥 Customers & Recommendations":
                 paper_bgcolor="rgba(0,0,0,0)",
                 margin=dict(l=0, r=0, t=10, b=0),
             )
-            st.plotly_chart(fig, use_container_width=True)
+            st.plotly_chart(fig, width='stretch')
         except Exception as e:
             show_error("Segment Chart", e)
 
@@ -405,7 +405,7 @@ elif page == "👥 Customers & Recommendations":
             display_cols = [c for c in ["Customer_ID", "Quantity_Sold", "Profit", "Segment"] if c in clusters.columns]
             st.dataframe(
                 clusters[display_cols].head(20),
-                use_container_width=True,
+                width='stretch',
                 hide_index=True,
             )
         except Exception as e:
@@ -419,10 +419,10 @@ elif page == "👥 Customers & Recommendations":
             tab1, tab2 = st.tabs(["⭐ High Value", "📉 Low Value"])
             with tab1:
                 hv = customer["high_value_customers"]
-                st.dataframe(hv, use_container_width=True, hide_index=True)
+                st.dataframe(hv, width='stretch', hide_index=True)
             with tab2:
                 lv = customer["low_value_customers"]
-                st.dataframe(lv, use_container_width=True, hide_index=True)
+                st.dataframe(lv, width='stretch', hide_index=True)
         except Exception as e:
             show_error("Customer Agent", e)
 
@@ -444,7 +444,7 @@ elif page == "👥 Customers & Recommendations":
             with c1:
                 st.dataframe(
                     top_rules.style.background_gradient(subset=["Lift"], cmap="Blues"),
-                    use_container_width=True,
+                    width='stretch',
                     hide_index=True,
                 )
             with c2:
@@ -485,7 +485,7 @@ elif page == "🔮 Forecasting":
             plot_bgcolor="rgba(0,0,0,0)",
             margin=dict(l=0, r=0, t=10, b=0),
         )
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width='stretch')
 
         avg_7 = sales["Quantity_Sold"].tail(7).mean()
         avg_30 = sales["Quantity_Sold"].tail(30).mean()
@@ -504,7 +504,7 @@ elif page == "🔮 Forecasting":
 
     col1, col2 = st.columns([1, 2])
     with col1:
-        if st.button("▶ Run LSTM Prediction", type="primary", use_container_width=True):
+        if st.button("▶ Run LSTM Prediction", type="primary", width='stretch'):
             with st.spinner("Training LSTM model..."):
                 try:
                     start = time.time()
