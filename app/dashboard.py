@@ -443,7 +443,7 @@ elif page == "👥 Customers & Recommendations":
             c1, c2 = st.columns([3, 1])
             with c1:
                 st.dataframe(
-                    top_rules.style.background_gradient(subset=["lift"], cmap="Blues"),
+                    top_rules.style.background_gradient(subset=["Lift"], cmap="Blues"),
                     use_container_width=True,
                     hide_index=True,
                 )
