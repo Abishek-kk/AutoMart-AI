@@ -89,4 +89,8 @@ streamlit
 plotly
 pandas
 numpy
+<<<<<<< HEAD
 scikit-learn
+=======
+scikit-learn
+>>>>>>> 56da67a84d747251437b42c570f46dd71a087780
