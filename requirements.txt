@@ -2,3 +2,6 @@ streamlit
 pandas
 numpy
 scikit-learn
+streamlit
+plotly
+pandas
