@@ -229,13 +229,17 @@ venv\Scripts\activate           # Windows
 pip install -r requirements.txt
 ```
 
-**Deployment (Streamlit Cloud/Heroku - CPU env):**
-```bash
-pip install torch==2.1.2 --index-url https://download.pytorch.org/whl/cpu
-pip install -r requirements.txt
+**Streamlit Cloud (Deploy Ready):**
+```
+Platform auto-installs from files:
+- packages.txt: empty (no apt deps)
+- requirements-pytorch.txt: torch/torchvision/torchaudio (CPU auto-select)
+- requirements.txt: standard deps (streamlit etc.)
+
+No manual pip; push to GitHub → deploy succeeds without --index-url or apt errors.
 ```
 
-*Note: Uses CPU-only PyTorch for compatibility with serverless CPU environments.*
+*Compatible with CPU-only environments like Streamlit Cloud.*
 
 
 **4. (Optional) Set your Google Gemini API key for AI-powered insights**
