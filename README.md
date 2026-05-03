@@ -29,7 +29,7 @@
 ##  Overview
 
 Supermarket AI is built around three core pillars:
-https://automart-ai-mpworqt3pcf76dsgxam9bl.streamlit.app/
+https://automart-ai-q53a5utpzascgl8rpolcmw.streamlit.app/
 
 | Pillar | Description |
 |--------|-------------|
