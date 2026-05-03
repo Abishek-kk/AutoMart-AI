@@ -5,3 +5,7 @@ scikit-learn
 streamlit
 plotly
 pandas
+streamlit
+plotly
+pandas
+torch
