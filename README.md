@@ -222,10 +222,21 @@ source venv/bin/activate        # macOS/Linux
 venv\Scripts\activate           # Windows
 ```
 
-**3. Install dependencies**
+**3. Install dependencies (CPU-only for deployment)**
+
+**Local (Windows/macOS/Linux):**
 ```bash
 pip install -r requirements.txt
 ```
+
+**Deployment (Streamlit Cloud/Heroku - CPU env):**
+```bash
+pip install torch==2.1.2 --index-url https://download.pytorch.org/whl/cpu
+pip install -r requirements.txt
+```
+
+*Note: Uses CPU-only PyTorch for compatibility with serverless CPU environments.*
+
 
 **4. (Optional) Set your Google Gemini API key for AI-powered insights**
 ```bash
