@@ -11,8 +11,7 @@ SEQ_LENGTH  = 7    # days of history used per prediction
 HIDDEN_SIZE = 64   # LSTM hidden units (increased from 50)
 EPOCHS      = 10   # max training epochs (reduced for faster training)
 LR          = 0.001
-PATIENCE    = 7    # early-stopping: stop if no improvement for N epochs
-
+PATIENCE    = 5    # early-stopping: stop if no improvement for N epochs
 
 # ── 1. Prepare & normalise data ───────────────────────────────────────────────
 def prepare_data(df):
@@ -25,7 +24,6 @@ def prepare_data(df):
 
     return scaled, scaler
 
-
 # ── 2. Sliding-window sequences ───────────────────────────────────────────────
 def create_sequences(data, seq_length=SEQ_LENGTH):
     X, y = [], []
@@ -33,7 +31,6 @@ def create_sequences(data, seq_length=SEQ_LENGTH):
         X.append(data[i : i + seq_length])
         y.append(data[i + seq_length])
     return np.array(X), np.array(y)
-
 
 # ── 3. Model definition ───────────────────────────────────────────────────────
 class LSTMModel(nn.Module):
@@ -51,7 +48,6 @@ class LSTMModel(nn.Module):
     def forward(self, x):
         out, _ = self.lstm(x)
         return self.fc(out[:, -1, :])
-
 
 # ── 4. Train with early stopping ─────────────────────────────────────────────
 def train_model(df, epochs=EPOCHS, force_retrain=False):
@@ -145,7 +141,6 @@ def train_model(df, epochs=EPOCHS, force_retrain=False):
     model.eval()
     return model, scaler
 
-
 # ── 5. Predict ────────────────────────────────────────────────────────────────
 def predict_future(model, scaler, df, seq_length=SEQ_LENGTH):
     """Use the last `seq_length` days to predict the next day, then inverse-scale."""
@@ -165,7 +160,6 @@ def predict_future(model, scaler, df, seq_length=SEQ_LENGTH):
     prediction = scaler.inverse_transform([[pred_scaled]])[0][0]
     return float(prediction)
 
-
 # ── 6. Confidence range (simple) ─────────────────────────────────────────────
 def prediction_with_range(model, scaler, df, seq_length=SEQ_LENGTH, margin=0.10):
     """
@@ -177,7 +171,6 @@ def prediction_with_range(model, scaler, df, seq_length=SEQ_LENGTH, margin=0.10)
     upper = pred * (1 + margin)
     return pred, lower, upper
 
-
 # ── 7. Public API ─────────────────────────────────────────────────────────────
 def run_lstm(df, force_retrain=False):
     """
@@ -188,12 +181,10 @@ def run_lstm(df, force_retrain=False):
     prediction    = predict_future(model, scaler, df)
     return prediction
 
-
 def run_lstm_with_range(df, force_retrain=False):
     """Returns (prediction, lower, upper) for dashboard confidence display."""
     model, scaler = train_model(df, force_retrain=force_retrain)
     return prediction_with_range(model, scaler, df)
-
 
 # ── 8. Scaler helpers ─────────────────────────────────────────────────────────
 def _save_scaler(scaler):
@@ -212,7 +203,6 @@ def _load_scaler():
     scaler.n_samples_seen_ = 1
     return scaler
 
-
 # ── 9. Test ───────────────────────────────────────────────────────────────────
 if __name__ == "__main__":
     from utils.preprocessing import preprocess_data
@@ -222,3 +212,4 @@ if __name__ == "__main__":
 
     print(f"\n📈 Next-Day Sales Prediction : {pred:.1f} units")
     print(f"   Confidence range          : {lo:.1f} – {hi:.1f} units")
+
